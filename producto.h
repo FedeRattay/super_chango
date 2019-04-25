@@ -1,23 +1,30 @@
-#ifndef PRODUCTO
-#define PRODUCTO
+#ifndef PRODUCTO_H
+#define PRODUCTO_H
+
+#include <iostream>
+using namespace std;
+#include <string>
 
 class Producto
 {
-	private:
-		string nombre;
-		unsigned long long codigo;
-		double precio;
-		bool oferta;
-	public:
-		void cargar_nombre(string new_nombre);
-		void cargar_codigo(unsigned long long new_codigo);
-		void cargar_precio(double new_precio);
-		void cargar_oferta(bool new_oferta);
-		
-		string get_nombre();
-		unsigned long long get_codigo();
-		double get_precio();
-		bool get_oferta();
+private:
+	string nombre;
+	unsigned long long codigo;
+	double precio;
+	bool oferta;
+
+public:
+	Producto();
+	Producto(string _nombre, unsigned long long codigoBarra, double precio, bool oferta);
+	void asignarNombre(string);
+	void asignarCodigoBarra(unsigned long long);
+	void asignarPrecio(double);
+	void asignarOferta(bool);
+
+	string obtenerNombre();
+	unsigned long long obtenerCodigoBarra();
+	double obtenerPrecio();
+	bool obtenerOferta();
 };
 
 #endif
