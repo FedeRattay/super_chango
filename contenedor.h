@@ -7,7 +7,7 @@ class Contenedor
 {
 	protected:
 		int tamanio;
-		Producto contenido[];
+		Producto contenido[1];
 	public:
 		void ver_contenido();
 		void buscar_producto_nombre(string nombre_producto);
