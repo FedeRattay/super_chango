@@ -1,15 +1,16 @@
 #include <iostream>
 using namespace std;
 #include "producto.h"
+#include "contenedor.h"
 
 void Contenedor::ver_contenido()
 {
 	for(int i = 0; i < tamanio; i++)
 	{
-		cout<<contenido[i].nombre<<endl;
-		cout<<contenido[i].codigo<<endl;
-		cout<<contenido[i].precio<<endl;
-		if(contenido[i].oferta)
+		cout<<contenido[i].obtener_nombre()<<endl;
+		cout<<contenido[i].obtener_codigo_barra()<<endl;
+		cout<<contenido[i].obtener_precio()<<endl;
+		if(contenido[i].obtener_oferta())
 			cout<<"En Oferta"<<endl;
 	}
 }
@@ -19,13 +20,13 @@ void Contenedor::buscar_producto_nombre(string nombre_producto)
 	bool encontrado = false;
 	while((i < tamanio)&&(!encontrado))
 	{
-		if(contenido[i].nombre == nombre_producto)
+		if(contenido[i].obtener_nombre() == nombre_producto)
 		{
 			encontrado = true;
-			cout<<contenido[i].nombre<<endl;
-			cout<<contenido[i].codigo<<endl;
-			cout<<contenido[i].precio<<endl;
-			if(contenido[i].oferta)
+			cout<<contenido[i].obtener_nombre()<<endl;
+			cout<<contenido[i].obtener_codigo_barra()<<endl;
+			cout<<contenido[i].obtener_precio()<<endl;
+			if(contenido[i].obtener_oferta())
 				cout<<"En Oferta"<<endl;
 		}
 		else
