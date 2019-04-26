@@ -2,20 +2,25 @@
 #include "contenedor.h"
 
 
-Contenedor::Contenedor(){
-    tamanio = 0;
-    contenido = new Producto[tamanio];
+Contenedor::Contenedor()
+{
+	tamanio = 0;
+	contenido = new Producto[tamanio];
 }
 
+void mostrar_producto(Producto un_producto)
+{
+	cout << un_producto.obtener_nombre();
+	cout << " [" << un_producto.obtener_codigo_barra() << "] ";
+	cout << "$" << un_producto.obtener_precio() << " | ";
+	cout << (un_producto.obtener_oferta() ? "Oferta 10% OFF\n" : "No esta en oferta\n");
+}
 
 void Contenedor::ver_contenido()
 {
 	for (int i = 0; i < tamanio; i++)
 	{
-		cout << (i + 1) << ". " << contenido[i].obtener_nombre();
-		cout << " [" << contenido[i].obtener_codigo_barra() << "] ";
-		cout << "$" << contenido[i].obtener_precio() << " | ";
-		cout << (contenido[i].obtener_oferta() ? "Oferta 10% OFF\n" : "No esta en oferta\n");
+		mostrar_producto(contenido[i]);
 	}
 }
 void Contenedor::buscar_producto_nombre(string nombre_producto)
@@ -27,10 +32,7 @@ void Contenedor::buscar_producto_nombre(string nombre_producto)
 		if (contenido[i].obtener_nombre() == nombre_producto)
 		{
 			encontrado = true;
-			cout << (i + 1) << ". " << contenido[i].obtener_nombre();
-			cout << " [" << contenido[i].obtener_codigo_barra() << "] ";
-			cout << "$" << contenido[i].obtener_precio() << " | ";
-			cout << (contenido[i].obtener_oferta() ? "Oferta 10% OFF\n" : "No esta en oferta\n");
+			mostrar_producto(contenido[i]);
 		}
 		else
 			i++;
@@ -46,6 +48,7 @@ void Contenedor::quitar_producto(string nombre_producto)
 	tamanio--;
 }
 
-Contenedor::~Contenedor(){
-    delete [] contenido;
+Contenedor::~Contenedor()
+{
+	delete[] contenido;
 }

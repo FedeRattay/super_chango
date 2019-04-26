@@ -5,9 +5,10 @@
 
 class Contenedor
 {
-	protected:
+	private:
 		int tamanio;
 		Producto *contenido;
+		void mostrar_producto(Producto un_producto);
 
 	public:
 		Contenedor();
