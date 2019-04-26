@@ -1,7 +1,6 @@
 #include "producto.h"
 #include "contenedor.h"
 
-
 Contenedor::Contenedor()
 {
 	tamanio = 0;
