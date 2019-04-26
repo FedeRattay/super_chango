@@ -7,7 +7,7 @@ Contenedor::Contenedor()
 	contenido = new Producto[tamanio];
 }
 
-void mostrar_producto(Producto un_producto)
+void Contenedor::mostrar_producto(Producto un_producto)
 {
 	cout << un_producto.obtener_nombre();
 	cout << " [" << un_producto.obtener_codigo_barra() << "] ";
