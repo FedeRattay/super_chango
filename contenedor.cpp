@@ -40,30 +40,39 @@ void Contenedor::buscar_producto_nombre(string nombre_producto)
 
 void Contenedor::redimensionar(int nuevo_tamanio)
 {
-	Producto* aux = new Producto[nuevo_tamanio];
-    if (nuevo_tamanio > 0){
-        //guarda en el producto en un auxiliar
-        for (int i = 0; i < nuevo_tamanio; i++)
-        {
-            aux[i] = contenido[i];
-        }
-        delete [] contenido;
-    }
-    for (int i = 0; i < nuevo_tamanio; i++){
-        contenido[i] = aux[i];
-    }
-    tamanio = nuevo_tamanio;
-    delete [] aux;
+//aqui usar la funcion;
+}
+
+void Contenedor::agregar_producto(Producto un_producto)
+{
+	contenido[tamanio] = un_producto;
+	redimensionar(++tamanio);
 }
 
 void Contenedor::quitar_producto(string nombre_producto)
 {
-	Producto auxiliar;
+	int pos = 0;
+	bool encontrado = false;
+	Producto aux;
 	for (int i = 0; i < tamanio; i++)
 	{
-		contenido[i] = contenido[i + 1];
+		if (contenido[i].obtener_nombre() == nombre_producto)
+		{
+			pos = i;
+			encontrado = true;
+			aux = contenido[i];
+		}
 	}
-	tamanio--;
+	if (encontrado)
+	{
+		contenido[pos] = contenido[tamanio];
+		contenido[tamanio] = aux;
+		//redimensionar(tamanio--);
+	}
+	else
+	{
+		cout << "El producto no existe" << endl;
+	}
 }
 
 Contenedor::~Contenedor()

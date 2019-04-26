@@ -11,6 +11,14 @@ string Producto::obtener_codigo_barra() { return codigo; }
 double Producto::obtener_precio() { return precio; }
 bool Producto::obtener_oferta() { return oferta; }
 
+void Producto::operator=( Producto &un_producto)
+{
+	//codigo = un_producto.obtener_codigo_barra();
+	//nombre = un_producto.obtener_nombre();
+	oferta = un_producto.obtener_oferta();
+	precio = un_producto.obtener_precio();
+}
+
 Producto::Producto()
 {
 	asignar_nombre("");
