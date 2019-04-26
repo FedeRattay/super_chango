@@ -38,6 +38,25 @@ void Contenedor::buscar_producto_nombre(string nombre_producto)
 			i++;
 	}
 }
+
+void Contenedor::redimensionar(int nuevo_tamanio)
+{
+	Producto* aux = new Producto[nuevo_tamanio];
+    if (nuevo_tamanio > 0){
+        //guarda en el producto en un auxiliar
+        for (int i = 0; i < nuevo_tamanio; i++)
+        {
+            aux[i] = contenido[i];
+        }
+        delete [] contenido;
+    }
+    for (int i = 0; i < nuevo_tamanio; i++){
+        contenido[i] = aux[i];
+    }
+    tamanio = nuevo_tamanio;
+    delete [] aux;
+}
+
 void Contenedor::quitar_producto(string nombre_producto)
 {
 	Producto auxiliar;

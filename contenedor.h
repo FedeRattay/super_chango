@@ -9,6 +9,7 @@ class Contenedor
 		int tamanio;
 		Producto *contenido;
 		void mostrar_producto(Producto un_producto);
+		void redimensionar(int nuevo_tamanio);
 
 	public:
 		Contenedor();
