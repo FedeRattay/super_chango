@@ -24,25 +24,34 @@ void Gondola::cargar_productos(string nombre_archivo)
 		
 		getline(archivo_stock,cantidad_productos,',');
 		int cantidad = stoi(cantidad_productos);
-		//REDIMENSIONAR LA GONDOLA ACA//
 		
-		while
-		(
-				getline(archivo_stock,codigo,',')&&
-				getline(archivo_stock,nombre,',')&&
-				getline(archivo_stock,precio_aux,',')&&
-				getline(archivo_stock,oferta_aux,',')
-		)
+		Producto* aux = new Producto[cantidad];
+		if (cantidad > 0)
 		{
-			precio = stod(precio_aux);
-			oferta = (oferta_aux == "1");
-			contenido[posicion].asignar_codigo_barra(codigo);
-			contenido[posicion].asignar_nombre(nombre);
-			contenido[posicion].asignar_precio(precio);
-			contenido[posicion].asignar_oferta(oferta);
-			
-			posicion++;
-		}//SEG-FAULT ACA: Porque se va de rango, se soluciona luego de hacer lo de redimensionar.
+			for (int i = 0; i < tamanio; i++)
+			{
+				aux[i] = contenido[i];
+			}
+			while
+			(
+					getline(archivo_stock,codigo,',')&&
+					getline(archivo_stock,nombre,',')&&
+					getline(archivo_stock,precio_aux,',')&&
+					getline(archivo_stock,oferta_aux,',')
+			)
+			{
+				precio = stod(precio_aux);
+				oferta = (oferta_aux == "1");
+				aux[posicion].asignar_codigo_barra(codigo);
+				aux[posicion].asignar_nombre(nombre);
+				aux[posicion].asignar_precio(precio);
+				aux[posicion].asignar_oferta(oferta);
+				posicion++;
+			}
+			tamanio = cantidad;
+			delete []contenido;
+			contenido = aux;
+		}
 	}
 }
 
@@ -50,7 +59,6 @@ void Gondola::cargar_un_producto(Producto producto_nuevo)
 {
 	
 }
-
 void Gondola::buscar_producto_codigo(unsigned long long codigo_producto)
 {
 	/*
@@ -90,4 +98,9 @@ void Gondola::ver_ofertas()
 		}
 	}
 	*/
+}
+
+Gondola::~Gondola()
+{
+	//delete[] ...;
 }
