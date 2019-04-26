@@ -26,3 +26,10 @@ Producto::Producto(string _nombre, string _codigoBarra, double _precio, bool _of
 	asignar_precio(_precio);
 	asignar_oferta(_oferta);
 }
+void Producto::operator=( Producto &un_producto)
+{
+	codigo = un_producto.obtener_codigo_barra();
+	nombre = un_producto.obtener_nombre();
+	oferta = un_producto.obtener_oferta();
+	precio = un_producto.obtener_precio();
+}

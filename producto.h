@@ -28,6 +28,7 @@ class Producto
 		string obtener_codigo_barra();
 		double obtener_precio();
 		bool obtener_oferta();
+		void Producto::operator=( Producto &un_producto);
 };
 
 #endif /* PRODUCTO_H */
