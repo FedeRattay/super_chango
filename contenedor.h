@@ -1,17 +1,22 @@
-#ifndef CONTENEDOR
-#define CONTENEDOR
+#ifndef CONTENEDOR_H
+#define CONTENEDOR_H
 
 #include "producto.h"
 
 class Contenedor
 {
-	protected:
+	private:
 		int tamanio;
-		Producto contenido[1];
+		Producto *contenido;
+		void mostrar_producto(Producto un_producto);
+		void redimensionar(int nuevo_tamanio);
 	public:
+		Contenedor();
+
 		void ver_contenido();
 		void buscar_producto_nombre(string nombre_producto);
 		void quitar_producto(string nombre_producto);
+		~Contenedor();
 };
 
 #endif
