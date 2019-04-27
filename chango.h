@@ -2,14 +2,11 @@
 #define CHANGO
 
 #include "producto.h"
-
-class Chango: public Contenedor
+#include "contenedor.h"
+class Chango : public Contenedor
 {
-	private:
-		int posicion;
-	public:
-		double calcular_total();
-		void cargar_producto(Producto producto_elegido);
+public:
+	void calcular_total();
 };
 
 #endif
