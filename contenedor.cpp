@@ -84,7 +84,6 @@ void Contenedor::agregar_producto(Producto un_producto)
 	contenido[ultima_pos].asignar_codigo_barra(codigo_new);
 	contenido[ultima_pos].asignar_precio(precio_new);
 	contenido[ultima_pos].asignar_oferta(oferta_new);
-	cout<<"La cantidad de productos son: "<<tamanio<<" pero el vector llega hasta: "<<tamanio-1<<endl;
 }
 
 /*void Contenedor::quitar_producto(string nombre_producto)
