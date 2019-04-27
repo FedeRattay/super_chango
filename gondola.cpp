@@ -7,9 +7,9 @@ using namespace std;
 void Gondola::cargar_productos(string nombre_archivo)
 {
 	ifstream archivo_stock(nombre_archivo);
-	if(!archivo_stock.is_open())
+	if (!archivo_stock.is_open())
 	{
-		cout<<"ERROR"<<endl;
+		cout << "ERROR" << endl;
 	}
 	else
 	{
@@ -21,24 +21,22 @@ void Gondola::cargar_productos(string nombre_archivo)
 		string oferta_aux;
 		double precio = 0;
 		bool oferta;
-		
-		getline(archivo_stock,cantidad_productos,',');
+
+		getline(archivo_stock, cantidad_productos, ',');
 		int cantidad = stoi(cantidad_productos);
-		
-		Producto* aux = new Producto[cantidad];
+
+		Producto *aux = new Producto[cantidad];
 		if (cantidad > 0)
 		{
 			for (int i = 0; i < tamanio; i++)
 			{
 				aux[i] = contenido[i];
 			}
-			while
-			(
-					getline(archivo_stock,codigo,',')&&
-					getline(archivo_stock,nombre,',')&&
-					getline(archivo_stock,precio_aux,',')&&
-					getline(archivo_stock,oferta_aux,',')
-			)
+			while (
+				getline(archivo_stock, codigo, ',') &&
+				getline(archivo_stock, nombre, ',') &&
+				getline(archivo_stock, precio_aux, ',') &&
+				getline(archivo_stock, oferta_aux, ','))
 			{
 				precio = stod(precio_aux);
 				oferta = (oferta_aux == "1");
@@ -49,23 +47,22 @@ void Gondola::cargar_productos(string nombre_archivo)
 				posicion++;
 			}
 			tamanio = cantidad;
-			delete []contenido;
+			delete[] contenido;
 			contenido = aux;
 		}
 	}
 }
 
-void Gondola::cargar_un_producto(Producto producto_nuevo)
+/*void Gondola::cargar_un_producto(Producto producto_nuevo)
 {
-	
-}
+}*/
 void Gondola::buscar_producto_codigo(string codigo_producto)
 {
 	int i = 0;
 	bool encontrado = false;
-	while((i < tamanio)&&(!encontrado))
+	while ((i < tamanio) && (!encontrado))
 	{
-		if(contenido[i].obtener_codigo_barra() == codigo_producto)
+		if (contenido[i].obtener_codigo_barra() == codigo_producto)
 		{
 			encontrado = true;
 			mostrar_producto(contenido[i]);
@@ -76,7 +73,22 @@ void Gondola::buscar_producto_codigo(string codigo_producto)
 }
 void Gondola::modificar_precio(string nombre_producto, double precio_nuevo)
 {
-	//contenido[i].precio = precio_nuevo;
+	int pos_modificar = 0;
+	bool encontrado = false;
+
+	while ((pos_modificar < tamanio) && (!encontrado))
+	{
+		if (contenido[pos_modificar].obtener_nombre() == nombre_producto)
+		{
+			encontrado = true;
+		}
+		else
+			pos_modificar++;
+	}
+	if (encontrado)
+	{
+		contenido[pos_modificar].asignar_precio(precio_nuevo);
+	} //else "existe el producto"?
 }
 void Gondola::ver_ofertas()
 {
@@ -94,7 +106,8 @@ void Gondola::ver_ofertas()
 	*/
 }
 
-Gondola::~Gondola()
+/*Gondola::~Gondola()
 {
 	//delete[] ...;
 }
+*/
