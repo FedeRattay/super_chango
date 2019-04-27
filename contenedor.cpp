@@ -67,9 +67,9 @@ void Contenedor::agregar_producto(Producto un_producto)
 {
 	int tam_new = 0;
 	if(tamanio > 0)
-		tam_new = tamanio*2;
+		tam_new = tamanio+1;
 	else
-		tam_new = 2;
+		tam_new = 1;
 	
 	int ultima_pos = tamanio;
 	
@@ -84,18 +84,19 @@ void Contenedor::agregar_producto(Producto un_producto)
 	contenido[ultima_pos].asignar_codigo_barra(codigo_new);
 	contenido[ultima_pos].asignar_precio(precio_new);
 	contenido[ultima_pos].asignar_oferta(oferta_new);
+	cout<<"La cantidad de productos son: "<<tamanio<<" pero el vector llega hasta: "<<tamanio-1<<endl;
 }
 
-void Contenedor::quitar_producto(string nombre_producto)
+/*void Contenedor::quitar_producto(string nombre_producto)
 {
-	/*Producto auxiliar;
+	Producto auxiliar;
 	for (int i = 0; i < tamanio; i++)
 	{
 		contenido[i] = contenido[i + 1];
 	}
 	int nuevo_tamanio = tamanio--;
-	redimensionar(nuevo_tamanio);*/
-}
+	redimensionar(nuevo_tamanio);
+}*/
 
 Contenedor::~Contenedor()
 {
