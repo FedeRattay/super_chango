@@ -12,6 +12,26 @@ int main()
 	Gondola gondola;
 	opcion_elegida = mostrar_menu_principal();
 	
+	if(opcion_elegida == 3)
+	{
+		Producto new_producto;
+		string new_name;
+		string new_cb = "1234567890123";
+		double new_prc = 0;
+		bool new_ofr = false;
+		
+		cout<<"Ingrese el nombre del Producto"<<endl;
+		cin>>new_name;
+		cout<<"Ingrese el precio del Producto"<<endl;
+		cin>>new_prc;
+		
+		new_producto.asignar_codigo_barra(new_cb);
+		new_producto.asignar_nombre(new_name);
+		new_producto.asignar_precio(new_prc);
+		new_producto.asignar_oferta(new_ofr);
+		
+		gondola.agregar_producto(new_producto);
+	}
 	if(opcion_elegida == 4)
 	{
 		string nombre_archivo;
@@ -19,6 +39,8 @@ int main()
 		cin>>nombre_archivo;
 		gondola.cargar_productos(nombre_archivo);
 	}
+	
+	gondola.ver_contenido();
 	
 	return 0;
 }

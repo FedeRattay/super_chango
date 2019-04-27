@@ -9,10 +9,9 @@ Contenedor::Contenedor()
 
 void Contenedor::mostrar_producto(Producto un_producto)
 {
-	cout << un_producto.obtener_nombre();
-	cout << " [" << un_producto.obtener_codigo_barra() << "] ";
-	cout << "$" << un_producto.obtener_precio() << " | ";
-	cout << (un_producto.obtener_oferta() ? "Oferta 10% OFF\n" : "No esta en oferta\n");
+	cout<<un_producto.obtener_codigo_barra()<<"|"<<un_producto.obtener_nombre()<<"|$";
+	cout<<un_producto.obtener_precio()<<"-> ";
+	cout<<(un_producto.obtener_oferta() ? "Oferta 10% OFF\n" : "No esta en oferta\n");
 }
 
 void Contenedor::ver_contenido()
@@ -64,22 +63,40 @@ void Contenedor::redimensionar(int nuevo_tamanio)
 	}
 }
 
-/*void Contenedor::agregar_producto(Producto un_producto)
+void Contenedor::agregar_producto(Producto un_producto)
 {
-	//aqui la linea que explota;
-}*/
+	int tam_new = 0;
+	if(tamanio > 0)
+		tam_new = tamanio*2;
+	else
+		tam_new = 2;
+	
+	int ultima_pos = tamanio;
+	
+	string nombre_new = un_producto.obtener_nombre();
+	string codigo_new = un_producto.obtener_codigo_barra();
+	double precio_new = un_producto.obtener_precio();
+	bool oferta_new = un_producto.obtener_oferta();
+	
+	redimensionar(tam_new);
+	
+	contenido[ultima_pos].asignar_nombre(nombre_new);
+	contenido[ultima_pos].asignar_codigo_barra(codigo_new);
+	contenido[ultima_pos].asignar_precio(precio_new);
+	contenido[ultima_pos].asignar_oferta(oferta_new);
+}
 
-/*void Contenedor::quitar_producto(string nombre_producto)
+void Contenedor::quitar_producto(string nombre_producto)
 {
-	Producto auxiliar;
+	/*Producto auxiliar;
 	for (int i = 0; i < tamanio; i++)
 	{
 		contenido[i] = contenido[i + 1];
 	}
 	int nuevo_tamanio = tamanio--;
-	redimensionar(nuevo_tamanio);
+	redimensionar(nuevo_tamanio);*/
 }
-*/
+
 Contenedor::~Contenedor()
 {
 	delete[] contenido;
