@@ -12,7 +12,7 @@ class Gondola: public Contenedor
 		void buscar_producto_codigo(string codigo_producto);
 		void modificar_precio(string nombre_producto, double precio_nuevo);
 		void ver_ofertas();
-		~Gondola();
+		//~Gondola();
 };
 
 #endif
