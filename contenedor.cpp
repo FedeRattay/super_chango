@@ -37,7 +37,7 @@ int Contenedor::esta_producto(string nombre_producto)
 	}
 	return posicion_buscada;
 }
-void Contenedor::buscar_producto_nombre(string nombre_producto)
+int Contenedor::buscar_producto_nombre(string nombre_producto)
 {
 	int prod_buscado = esta_producto(nombre_producto);
 	if (prod_buscado != NO_ENCONTRADO)
@@ -48,6 +48,7 @@ void Contenedor::buscar_producto_nombre(string nombre_producto)
 	{
 		cout << "No existe el producto: " << nombre_producto << endl;
 	}
+	return prod_buscado;
 }
 void Contenedor::redimensionar(int nuevo_tamanio)
 {

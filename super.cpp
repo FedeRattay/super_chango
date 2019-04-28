@@ -56,7 +56,7 @@ int main()
 		{
 			cout<<"Nombre del Producto: "<<endl;
 			cin>>nombre_buscado;
-			posicion_buscada = gondola.esta_producto(nombre_buscado);
+			posicion_buscada = gondola.buscar_producto_nombre(nombre_buscado);
 			if(posicion_buscada != -1)
 			{
 				cout<<"1- Modificar El Precio"<<endl;
