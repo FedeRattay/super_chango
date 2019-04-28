@@ -6,6 +6,7 @@
 class Contenedor
 {
 protected:
+	const int NO_ENCONTRADO = -1;
 	int tamanio;
 	int espacio_ocupado;
 	Producto *contenido;

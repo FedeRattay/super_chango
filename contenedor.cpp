@@ -1,6 +1,5 @@
 #include "producto.h"
 #include "contenedor.h"
-const int NO_ENCONTRADO = -1;
 
 Contenedor::Contenedor()
 {
