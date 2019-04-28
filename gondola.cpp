@@ -45,20 +45,25 @@ void Gondola::cargar_productos(string nombre_archivo)
 	}
 }
 
-void Gondola::buscar_producto_codigo(string codigo_producto)
+int Gondola::buscar_producto_codigo(string codigo_producto)
 {
-	int i = 0;
-	bool encontrado = false;
-	while ((i < tamanio) && (!encontrado))
+	int posicion_buscada = NO_ENCONTRADO;
+	int posicion = 0;
+	while ((posicion < tamanio) && (posicion_buscada == NO_ENCONTRADO))
 	{
-		if (contenido[i].obtener_codigo_barra() == codigo_producto)
+		if (contenido[posicion].obtener_codigo_barra() == codigo_producto)
 		{
-			encontrado = true;
-			mostrar_producto(contenido[i]);
+			posicion_buscada = posicion;
+			mostrar_producto(contenido[posicion_buscada]);
 		}
 		else
-			i++;
+			posicion++;
 	}
+	if (posicion_buscada == NO_ENCONTRADO)
+	{
+		cout << "No existe el producto: " << codigo_producto << endl;
+	}
+	return posicion_buscada;
 }
 void Gondola::modificar_precio(int posicion_buscada, double precio_nuevo)
 {

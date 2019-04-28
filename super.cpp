@@ -1,10 +1,6 @@
 #include <iostream>
 using namespace std;
-#include "gondola.h"
-#include "chango.h"
-
-int mostrar_menu_principal();
-void mostrar_menu_seleccion(int usuario);
+#include "super.h"
 
 int main()
 {
@@ -57,22 +53,25 @@ int main()
 			cout<<"Nombre del Producto: "<<endl;
 			cin>>nombre_buscado;
 			posicion_buscada = gondola.buscar_producto_nombre(nombre_buscado);
-			if(posicion_buscada != -1)
+			if(posicion_buscada != NO_ENCONTRADO)
 			{
 				cout<<"1- Modificar El Precio"<<endl;
 				cout<<"2- Quitar Producto"<<endl;
 				cin>>sub_opcion_elegida;
 			}
 		}
-		else if(opcion_elegida == 6)//BUSCAR POR CODIGO HAY QUE MODIFICARLO
+		else if(opcion_elegida == 6)
 		{
 			string codigo_buscado;
 			cout<<"Codigo del Producto: "<<endl;
 			cin>>codigo_buscado;
 			gondola.buscar_producto_codigo(codigo_buscado);
-			cout<<"1- Modificar El Precio"<<endl;
-			cout<<"2- Quitar Producto"<<endl;
-			cin>>sub_opcion_elegida;
+			if(posicion_buscada != NO_ENCONTRADO)
+			{
+				cout<<"1- Modificar El Precio"<<endl;
+				cout<<"2- Quitar Producto"<<endl;
+				cin>>sub_opcion_elegida;
+			}
 		}
 		
 		if(sub_opcion_elegida == 1)
@@ -122,25 +121,14 @@ int mostrar_menu_principal()
 	}
 	else if(usuario == 2)
 	{
-		/*
 		cout<<"1- Mostrar el Chango"<<endl;
 		cout<<"2- Mostrar la Gondola"<<endl;
 		cout<<"3- Ver Productos en Oferta"<<endl;
 		cout<<"4- Seleccionar Producto de la gondola ~ (Por Nombre)"<<endl;
 		cout<<"5- Calcular Total Chango"<<endl;
 		cin>>opcion;
-		
+		/*SUB OPCIONES
 		cout<<"1- Cargar Producto al Chango"<<endl;
-		cout<<"2- Quitar Producto del Chango"<<endl;
-		*/
+		cout<<"2- Quitar Producto del Chango"<<endl;*/
 	}
-	/*
-	while(en_uso)
-	{
-		
-		cout<<"Continuar?\nSi-> 1\nNo-> 0"<<endl;
-		cin>>en_uso;
-	}
-	*/
-	return 0;
 }
