@@ -89,18 +89,13 @@ void Gondola::modificar_precio(string nombre_producto, double precio_nuevo)
 }
 void Gondola::ver_ofertas()
 {
-	/*
 	for(int i = 0; i < tamanio; i++)
 	{
-		if(contenido[i].oferta)
+		if(contenido[i].obtener_oferta())
 		{
-			cout<<contenido[i].nombre<<endl;
-			cout<<contenido[i].codigo<<endl;
-			cout<<contenido[i].precio<<endl;
-			cout<<"En Oferta"<<endl;
+			mostrar_producto(contenido[i]);
 		}
 	}
-	*/
 }
 
 /*Gondola::~Gondola()
