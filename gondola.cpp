@@ -9,30 +9,25 @@ void Gondola::cargar_productos(string nombre_archivo)
 	ifstream archivo_stock(nombre_archivo);
 	if (!archivo_stock.is_open())
 	{
-		cout << "ERROR" << endl;
+		cout <<"ERROR Archivo inexistente"<< endl;
 	}
 	else
 	{
 		int posicion = 0;
 		string cantidad_productos;
+		Producto aux;
 		string codigo;
 		string nombre;
 		string precio_aux;
 		string oferta_aux;
 		double precio = 0;
 		bool oferta;
-
+		
 		getline(archivo_stock, cantidad_productos, ',');
 		int cantidad = stoi(cantidad_productos);
 
-		Producto *aux = new Producto[cantidad];
-		if (cantidad > 0)
-		{
-			for (int i = 0; i < tamanio; i++)
-			{
-				aux[i] = contenido[i];
-			}
-			while (
+		redimensionar(cantidad);
+		while (
 				getline(archivo_stock, codigo, ',') &&
 				getline(archivo_stock, nombre, ',') &&
 				getline(archivo_stock, precio_aux, ',') &&
@@ -40,16 +35,13 @@ void Gondola::cargar_productos(string nombre_archivo)
 			{
 				precio = stod(precio_aux);
 				oferta = (oferta_aux == "1");
-				aux[posicion].asignar_codigo_barra(codigo);
-				aux[posicion].asignar_nombre(nombre);
-				aux[posicion].asignar_precio(precio);
-				aux[posicion].asignar_oferta(oferta);
+				aux.asignar_codigo_barra(codigo);
+				aux.asignar_nombre(nombre);
+				aux.asignar_precio(precio);
+				aux.asignar_oferta(oferta);
+				agregar_producto(aux);
 				posicion++;
 			}
-			tamanio = cantidad;
-			delete[] contenido;
-			contenido = aux;
-		}
 	}
 }
 

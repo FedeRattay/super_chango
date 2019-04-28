@@ -67,7 +67,8 @@ int main()
 			cout<<"Continuar[1] - Salir[0]"<<endl;
 			cin>>en_uso;
 		}
-		opcion_elegida = mostrar_menu_principal();
+		if(en_uso)
+			opcion_elegida = mostrar_menu_principal();
 	}
 	return 0;
 }

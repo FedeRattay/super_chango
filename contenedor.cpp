@@ -19,7 +19,7 @@ void Contenedor::mostrar_producto(Producto un_producto)
 
 void Contenedor::ver_contenido()
 {
-	for (int i = 0; i < tamanio; i++)
+	for (int i = 0; i < espacio_ocupado; i++)
 	{
 		mostrar_producto(contenido[i]);
 	}
@@ -92,7 +92,6 @@ void Contenedor::agregar_producto(Producto un_producto)
 	contenido[primera_pos_disponible].asignar_precio(precio_new);
 	contenido[primera_pos_disponible].asignar_oferta(oferta_new);
 	espacio_ocupado++;
-	cout << " ESPACIO OCUPADO: " << espacio_ocupado << endl;
 }
 
 void Contenedor::quitar_producto(string nombre_producto)
