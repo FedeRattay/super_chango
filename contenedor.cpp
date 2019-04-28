@@ -65,26 +65,31 @@ void Contenedor::redimensionar(int nuevo_tamanio)
 void Contenedor::agregar_producto(Producto un_producto)
 {
 	int tam_new = 0;
-	int ultima_pos = espacio_ocupado-1;
+	int primera_pos_disponible = 0;
 	string nombre_new = un_producto.obtener_nombre();
 	string codigo_new = un_producto.obtener_codigo_barra();
 	double precio_new = un_producto.obtener_precio();
 	bool oferta_new = un_producto.obtener_oferta();
 	
-	if(tamanio != 0)
+	if(tamanio == 0) //El vector estaba vacio
 	{
-		espacio_ocupado++;
-	}
-	if(espacio_ocupado == tamanio)
-	{
-		tam_new = espacio_ocupado+5;
+		tam_new = 5;
 		redimensionar(tam_new);
 	}
-
-	contenido[ultima_pos].asignar_nombre(nombre_new);
-	contenido[ultima_pos].asignar_codigo_barra(codigo_new);
-	contenido[ultima_pos].asignar_precio(precio_new);
-	contenido[ultima_pos].asignar_oferta(oferta_new);
+	else if(tamanio != 0)
+	{
+		primera_pos_disponible = espacio_ocupado;
+		if(espacio_ocupado == tamanio) //El vector estaba lleno
+		{
+			tam_new = espacio_ocupado+5;
+			redimensionar(tam_new);
+		}
+	}
+	contenido[primera_pos_disponible].asignar_nombre(nombre_new);
+	contenido[primera_pos_disponible].asignar_codigo_barra(codigo_new);
+	contenido[primera_pos_disponible].asignar_precio(precio_new);
+	contenido[primera_pos_disponible].asignar_oferta(oferta_new);
+	espacio_ocupado++;
 }
 
 void Contenedor::quitar_producto(string nombre_producto)
