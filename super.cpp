@@ -5,10 +5,8 @@ using namespace std;
 int main()
 {
 	bool en_uso = true;
-	int posicion_buscada = 0;
 	Gondola gondola;
-	string nombre_buscado;
-	double new_prc;
+	Chango chango;
 	
 	int usuario = 0;
 	int opcion_elegida = 0;
@@ -16,7 +14,10 @@ int main()
 	while(en_uso == true)
 	{
 		opcion_elegida = mostrar_menu_principal(usuario); //QUE ACCION Y DE QUE TIPO DE USUARIO SE REALIZARA
-		realizar_accion(usuario, opcion_elegida, en_uso);
+		if(opcion_elegida == -1)
+			cout<<"ERROR opcion Incorrecta"<<endl;
+		else
+			realizar_accion(usuario, opcion_elegida, en_uso, gondola, chango);
 	}
 	return 0;
 }
@@ -35,6 +36,8 @@ int mostrar_menu_principal(int &usuario)
 	{
 		return mostrar_menu_cliente();
 	}
+	else
+		return -1;
 }
 int mostrar_menu_repositor()
 {
@@ -52,29 +55,33 @@ int mostrar_menu_cliente()
 {
 	int opcion = 0;
 	cout<<"1- Mostrar el Chango"<<endl;
-	cout<<"2- Mostrar la Gondola"<<endl;
-	cout<<"3- Ver Productos en Oferta"<<endl;
-	cout<<"4- Seleccionar Producto de la gondola ~ (Por Nombre)"<<endl;
-	cout<<"5- Calcular Total Chango"<<endl;
+	cout<<"2- Quitar un Producto del Chango ~ (Por Nombre)"<<endl;
+	cout<<"3- Mostrar la Gondola"<<endl;
+	cout<<"4- Ver Productos en Oferta"<<endl;
+	cout<<"5- Agregar un Producto de la gondola ~ (Por Nombre)"<<endl;
+	cout<<"6- Calcular Total Chango"<<endl;
 	cin>>opcion;
 	return opcion;
 }
-void realizar_accion(int usuario, int opcion_elegida, bool &en_uso)
+void realizar_accion(int usuario, int opcion_elegida, bool &en_uso, Gondola gondola, Chango chango)
 {
 	if(usuario == 1)
 	{
-		acciones_repositor(opcion_elegida);
+		acciones_repositor(opcion_elegida,gondola);
 	}
 	else if(usuario == 2)
 	{
-		acciones_cliente(opcion_elegida);
+		acciones_cliente(opcion_elegida,gondola,chango);
 	}
 	cout<<"Continuar[1] - Salir[0]"<<endl;
 	cin>>en_uso;
 }
-void acciones_repositor(int opcion_elegida)
+void acciones_repositor(int opcion_elegida, Gondola gondola)
 {
+	int posicion_buscada = 0;
 	int sub_opcion_elegida = 0;
+	string nombre_buscado;
+	double new_prc;
 	
 	if(opcion_elegida == 1)
 		gondola.ver_contenido();
@@ -145,9 +152,36 @@ void acciones_repositor(int opcion_elegida)
 		gondola.quitar_producto(posicion_buscada);
 	}
 }
-void acciones_cliente(int opcion_elegida)
+void acciones_cliente(int opcion_elegida, Gondola gondola, Chango chango)
 {
-	/*SUB OPCIONES
-	cout<<"1- Cargar Producto al Chango"<<endl;
-	cout<<"2- Quitar Producto del Chango"<<endl;*/
+	if(opcion_elegida == 1)
+		chango.ver_contenido();
+	else if(opcion_elegida == 2)
+	{
+		string nombre;
+		cout<<"Nombre del Producto: "<<endl;
+		cin>>nombre;
+		int posicion_buscada;
+		posicion_buscada = gondola.buscar_producto_nombre(nombre);
+		if(posicion_buscada != NO_ENCONTRADO)
+			chango.quitar_producto(posicion_buscada);
+	}
+	else if(opcion_elegida == 3)
+		gondola.ver_contenido();
+	else if(opcion_elegida == 4)
+		gondola.ver_ofertas();
+	else if(opcion_elegida == 5)
+	{
+		string nombre;
+		cout<<"Nombre del Producto: "<<endl;
+		cin>>nombre;
+		int posicion_buscada;
+		posicion_buscada = gondola.buscar_producto_nombre(nombre);
+		if(posicion_buscada != NO_ENCONTRADO)
+			chango.agregar_producto();
+	}
+	else if(opcion_elegida == 6)
+	{
+		chango.calcular_total();
+	}
 }
