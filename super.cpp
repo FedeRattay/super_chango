@@ -179,8 +179,7 @@ void acciones_cliente(int opcion_elegida, Gondola gondola, Chango chango)
 		posicion_buscada = gondola.buscar_producto_nombre(nombre);
 		if(posicion_buscada != NO_ENCONTRADO)
 		{
-			Producto producto_elegido = gondola.contenido[posicion_buscada];
-			chango.agregar_producto(producto_elegido);
+			chango.agregar_producto(gondola.obtener_producto(posicion_buscada));
 		}
 	}
 	else if(opcion_elegida == 6)
