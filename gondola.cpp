@@ -53,9 +53,6 @@ void Gondola::cargar_productos(string nombre_archivo)
 	}
 }
 
-/*void Gondola::cargar_un_producto(Producto producto_nuevo)
-{
-}*/
 void Gondola::buscar_producto_codigo(string codigo_producto)
 {
 	int i = 0;

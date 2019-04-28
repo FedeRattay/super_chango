@@ -95,4 +95,5 @@ int mostrar_menu_principal()
 		cin>>en_uso;
 	}
 	*/
+	return 0;
 }

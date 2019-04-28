@@ -47,7 +47,6 @@ Contenedor:
 ----------------------------------
 Contenedor>>Gondola: //REPOSITOR
 		+void cargar_productos(string);
-		+void cargar_un_producto(Producto);
 		+void buscar_producto_codigo(string);
 		+void modificar_precio(string,double);
 		+void ver_ofertas();
