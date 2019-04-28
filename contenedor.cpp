@@ -22,33 +22,25 @@ void Contenedor::ver_contenido()
 		mostrar_producto(contenido[i]);
 	}
 }
-int Contenedor::esta_producto(string nombre_producto)
-{
-	int posicion_buscada = NO_ENCONTRADO;
-	int pos_producto = 0;
-	while ((pos_producto < tamanio) && (posicion_buscada == NO_ENCONTRADO))
-	{
-		if (contenido[pos_producto].obtener_nombre() == nombre_producto)
-		{
-			posicion_buscada = pos_producto;
-		}
-		else
-			pos_producto++;
-	}
-	return posicion_buscada;
-}
 int Contenedor::buscar_producto_nombre(string nombre_producto)
 {
-	int prod_buscado = esta_producto(nombre_producto);
-	if (prod_buscado != NO_ENCONTRADO)
+	int posicion_buscada = NO_ENCONTRADO;
+	int posicion = 0;
+	while ((posicion < tamanio) && (posicion_buscada == NO_ENCONTRADO))
 	{
-		mostrar_producto(contenido[prod_buscado]);
+		if (contenido[posicion].obtener_nombre() == nombre_producto)
+		{
+			posicion_buscada = posicion;
+			mostrar_producto(contenido[posicion_buscada]);
+		}
+		else
+			posicion++;
 	}
-	else
+	if (posicion_buscada == NO_ENCONTRADO)
 	{
 		cout << "No existe el producto: " << nombre_producto << endl;
 	}
-	return prod_buscado;
+	return posicion_buscada;
 }
 void Contenedor::redimensionar(int nuevo_tamanio)
 {
