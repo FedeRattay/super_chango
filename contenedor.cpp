@@ -101,19 +101,10 @@ void Contenedor::agregar_producto(Producto un_producto)
 	contenido[primera_pos_disponible].asignar_oferta(oferta_new);
 	espacio_ocupado++;
 }
-void Contenedor::quitar_producto(string nombre_producto)
+void Contenedor::quitar_producto(int posicion_buscada)
 {
-
-	int prod_eliminar = esta_producto(nombre_producto);
-	if (prod_eliminar != NO_ENCONTRADO)
-	{
-		contenido[prod_eliminar] = contenido[espacio_ocupado - 1];
-		espacio_ocupado--;
-	}
-	else
-	{
-		cout << "No existe el producto: " << nombre_producto << endl;
-	}
+	contenido[posicion_buscada] = contenido[espacio_ocupado - 1];
+	espacio_ocupado--;
 }
 Contenedor::~Contenedor()
 {
