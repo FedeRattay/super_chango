@@ -10,6 +10,7 @@ class Gondola: public Contenedor
 		void cargar_productos(string nombre_archivo);
 		int buscar_producto_codigo(string codigo_producto);
 		void modificar_precio(int posicion_buscada, double precio_nuevo);
+		Producto obtener_producto(int posicion_buscada);
 		void ver_ofertas();
 		//~Gondola();
 };

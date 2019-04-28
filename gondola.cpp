@@ -44,7 +44,6 @@ void Gondola::cargar_productos(string nombre_archivo)
 		}
 	}
 }
-
 int Gondola::buscar_producto_codigo(string codigo_producto)
 {
 	int posicion_buscada = NO_ENCONTRADO;
@@ -78,6 +77,10 @@ void Gondola::ver_ofertas()
 			mostrar_producto(contenido[i]);
 		}
 	}
+}
+Producto Gondola::obtener_producto(int posicion_buscada)
+{
+	return contenido[posicion_buscada];
 }
 /*Gondola::~Gondola()
 {
