@@ -7,22 +7,34 @@ Contenedor::Contenedor()
 	espacio_ocupado = 0;
 	contenido = new Producto[tamanio];
 }
-
 int Contenedor::obtener_cantidad_productos() { return espacio_ocupado; }
-
 void Contenedor::mostrar_producto(Producto un_producto)
 {
 	cout << un_producto.obtener_codigo_barra() << "|" << un_producto.obtener_nombre() << "|$";
 	cout << un_producto.obtener_precio() << "-> ";
 	cout << (un_producto.obtener_oferta() ? "Oferta 10% OFF\n" : "No esta en oferta\n");
 }
-
 void Contenedor::ver_contenido()
 {
 	for (int i = 0; i < espacio_ocupado; i++)
 	{
 		mostrar_producto(contenido[i]);
 	}
+}
+int Contenedor::esta_producto(string nombre_producto)
+{
+	int posicion_buscada = -1;
+	int pos_producto = 0;
+	while ((pos_producto < tamanio) && (posicion_buscada != -1))
+	{
+		if (contenido[pos_producto].obtener_nombre() == nombre_producto)
+		{
+			posicion_buscada = pos_producto;
+		}
+		else
+			pos_producto++;
+	}
+	return posicion_buscada;
 }
 void Contenedor::buscar_producto_nombre(string nombre_producto)
 {
@@ -39,7 +51,6 @@ void Contenedor::buscar_producto_nombre(string nombre_producto)
 			i++;
 	}
 }
-
 void Contenedor::redimensionar(int nuevo_tamanio)
 {
 	Producto *aux = new Producto[nuevo_tamanio];
@@ -64,7 +75,6 @@ void Contenedor::redimensionar(int nuevo_tamanio)
 		tamanio = nuevo_tamanio;
 	}
 }
-
 void Contenedor::agregar_producto(Producto un_producto)
 {
 	int tam_new = 0;
@@ -111,7 +121,6 @@ void Contenedor::quitar_producto(string nombre_producto)
 			pos_eliminar++;
 	}
 }
-
 Contenedor::~Contenedor()
 {
 	delete[] contenido;
