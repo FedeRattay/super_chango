@@ -1,5 +1,6 @@
 #include "producto.h"
 #include "contenedor.h"
+const int NO_ENCONTRADO = -1;
 
 Contenedor::Contenedor()
 {
@@ -23,9 +24,9 @@ void Contenedor::ver_contenido()
 }
 int Contenedor::esta_producto(string nombre_producto)
 {
-	int posicion_buscada = -1;
+	int posicion_buscada = NO_ENCONTRADO;
 	int pos_producto = 0;
-	while ((pos_producto < tamanio) && (posicion_buscada != -1))
+	while ((pos_producto < tamanio) && (posicion_buscada != NO_ENCONTRADO))
 	{
 		if (contenido[pos_producto].obtener_nombre() == nombre_producto)
 		{
@@ -39,7 +40,7 @@ int Contenedor::esta_producto(string nombre_producto)
 void Contenedor::buscar_producto_nombre(string nombre_producto)
 {
 	int prod_buscado = esta_producto(nombre_producto);
-	if (prod_buscado != -1)
+	if (prod_buscado != NO_ENCONTRADO)
 	{
 		mostrar_producto(contenido[prod_buscado]);
 	}
@@ -101,22 +102,18 @@ void Contenedor::agregar_producto(Producto un_producto)
 	contenido[primera_pos_disponible].asignar_oferta(oferta_new);
 	espacio_ocupado++;
 }
-
 void Contenedor::quitar_producto(string nombre_producto)
 {
-	int pos_eliminar = 0;
-	bool encontrado = false;
 
-	while ((pos_eliminar < tamanio) && (!encontrado))
+	int prod_eliminar = esta_producto(nombre_producto);
+	if (prod_eliminar != NO_ENCONTRADO)
 	{
-		if (contenido[pos_eliminar].obtener_nombre() == nombre_producto)
-		{
-			encontrado = true;
-			contenido[pos_eliminar] = contenido[tamanio - 1];
-			espacio_ocupado--;
-		}
-		else
-			pos_eliminar++;
+		contenido[prod_eliminar] = contenido[espacio_ocupado - 1];
+		espacio_ocupado--;
+	}
+	else
+	{
+		cout << "No existe el producto: " << nombre_producto << endl;
 	}
 }
 Contenedor::~Contenedor()
