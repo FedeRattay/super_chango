@@ -65,17 +65,16 @@ void Contenedor::redimensionar(int nuevo_tamanio)
 void Contenedor::agregar_producto(Producto un_producto)
 {
 	int tam_new = 0;
-	if(tamanio == 0)
-		tam_new = 2;
-
 	int ultima_pos = espacio_ocupado-1;
-
 	string nombre_new = un_producto.obtener_nombre();
 	string codigo_new = un_producto.obtener_codigo_barra();
 	double precio_new = un_producto.obtener_precio();
 	bool oferta_new = un_producto.obtener_oferta();
 	
-	espacio_ocupado++;
+	if(tamanio != 0)
+	{
+		espacio_ocupado++;
+	}
 	if(espacio_ocupado == tamanio)
 	{
 		tam_new = espacio_ocupado+5;
