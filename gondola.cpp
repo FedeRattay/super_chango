@@ -9,7 +9,7 @@ void Gondola::cargar_productos(string nombre_archivo)
 	ifstream archivo_stock(nombre_archivo);
 	if (!archivo_stock.is_open())
 	{
-		cout <<"ERROR Archivo inexistente"<< endl;
+		cout << "ERROR Archivo inexistente" << endl;
 	}
 	else
 	{
@@ -22,26 +22,26 @@ void Gondola::cargar_productos(string nombre_archivo)
 		string oferta_aux;
 		double precio = 0;
 		bool oferta;
-		
+
 		getline(archivo_stock, cantidad_productos, ',');
 		int cantidad = stoi(cantidad_productos);
 
 		redimensionar(cantidad);
 		while (
-				getline(archivo_stock, codigo, ',') &&
-				getline(archivo_stock, nombre, ',') &&
-				getline(archivo_stock, precio_aux, ',') &&
-				getline(archivo_stock, oferta_aux, ','))
-			{
-				precio = stod(precio_aux);
-				oferta = (oferta_aux == "1");
-				aux.asignar_codigo_barra(codigo);
-				aux.asignar_nombre(nombre);
-				aux.asignar_precio(precio);
-				aux.asignar_oferta(oferta);
-				agregar_producto(aux);
-				posicion++;
-			}
+			getline(archivo_stock, codigo, ',') &&
+			getline(archivo_stock, nombre, ',') &&
+			getline(archivo_stock, precio_aux, ',') &&
+			getline(archivo_stock, oferta_aux, ','))
+		{
+			precio = stod(precio_aux);
+			oferta = (oferta_aux == "1");
+			aux.asignar_codigo_barra(codigo);
+			aux.asignar_nombre(nombre);
+			aux.asignar_precio(precio);
+			aux.asignar_oferta(oferta);
+			agregar_producto(aux);
+			posicion++;
+		}
 	}
 }
 
@@ -62,34 +62,26 @@ void Gondola::buscar_producto_codigo(string codigo_producto)
 }
 void Gondola::modificar_precio(string nombre_producto, double precio_nuevo)
 {
-	int pos_modificar = 0;
-	bool encontrado = false;
-
-	while ((pos_modificar < tamanio) && (!encontrado))
+	int prod_modificar = esta_producto(nombre_producto);
+	if (prod_modificar != -1)
 	{
-		if (contenido[pos_modificar].obtener_nombre() == nombre_producto)
-		{
-			encontrado = true;
-		}
-		else
-			pos_modificar++;
+		contenido[prod_modificar].asignar_precio(precio_nuevo);
 	}
-	if (encontrado)
+	else
 	{
-		contenido[pos_modificar].asignar_precio(precio_nuevo);
-	} //else "existe el producto"?
+		cout << "No existe el producto: " << nombre_producto << endl;
+	}
 }
 void Gondola::ver_ofertas()
 {
-	for(int i = 0; i < tamanio; i++)
+	for (int i = 0; i < tamanio; i++)
 	{
-		if(contenido[i].obtener_oferta())
+		if (contenido[i].obtener_oferta())
 		{
 			mostrar_producto(contenido[i]);
 		}
 	}
 }
-
 /*Gondola::~Gondola()
 {
 	//delete[] ...;

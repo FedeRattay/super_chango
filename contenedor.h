@@ -16,8 +16,8 @@ public:
 	Contenedor();
 	int obtener_cantidad_productos();
 	void ver_contenido();
-
-	void buscar_producto_nombre(string nombre_producto);
+	int esta_producto(string nombre_producto);
+	void buscar_producto_nombre(string nombre_producto);//Este metodo ver si sirve??
 	virtual void agregar_producto(Producto un_producto);
 	void quitar_producto(string nombre_producto);
 	~Contenedor();
