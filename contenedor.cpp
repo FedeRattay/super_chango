@@ -26,7 +26,7 @@ int Contenedor::esta_producto(string nombre_producto)
 {
 	int posicion_buscada = NO_ENCONTRADO;
 	int pos_producto = 0;
-	while ((pos_producto < tamanio) && (posicion_buscada != NO_ENCONTRADO))
+	while ((pos_producto < tamanio) && (posicion_buscada == NO_ENCONTRADO))
 	{
 		if (contenido[pos_producto].obtener_nombre() == nombre_producto)
 		{
