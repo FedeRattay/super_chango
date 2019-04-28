@@ -4,6 +4,7 @@
 Contenedor::Contenedor()
 {
 	tamanio = 0;
+	espacio_ocupado = 0;
 	contenido = new Producto[tamanio];
 }
 
@@ -70,7 +71,6 @@ void Contenedor::agregar_producto(Producto un_producto)
 	string codigo_new = un_producto.obtener_codigo_barra();
 	double precio_new = un_producto.obtener_precio();
 	bool oferta_new = un_producto.obtener_oferta();
-	
 	if(tamanio == 0) //El vector estaba vacio
 	{
 		tam_new = 5;
@@ -90,6 +90,7 @@ void Contenedor::agregar_producto(Producto un_producto)
 	contenido[primera_pos_disponible].asignar_precio(precio_new);
 	contenido[primera_pos_disponible].asignar_oferta(oferta_new);
 	espacio_ocupado++;
+	cout<<" ESPACIO OCUPADO: "<<espacio_ocupado<<endl;
 }
 
 void Contenedor::quitar_producto(string nombre_producto)

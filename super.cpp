@@ -8,40 +8,67 @@ void mostrar_menu_seleccion(int usuario);
 
 int main()
 {
+	bool en_uso = true;
 	int opcion_elegida = 0;
 	Gondola gondola;
-	opcion_elegida = mostrar_menu_principal();
-	
-	if(opcion_elegida == 3)
+	while(en_uso == true)
 	{
-		Producto new_producto;
-		string new_name;
-		string new_cb = "1234567890123";
-		double new_prc = 0;
-		bool new_ofr = false;
-		
-		cout<<"Ingrese el nombre del Producto"<<endl;
-		cin>>new_name;
-		cout<<"Ingrese el precio del Producto"<<endl;
-		cin>>new_prc;
-		
-		new_producto.asignar_codigo_barra(new_cb);
-		new_producto.asignar_nombre(new_name);
-		new_producto.asignar_precio(new_prc);
-		new_producto.asignar_oferta(new_ofr);
-		
-		gondola.agregar_producto(new_producto);
+		if(opcion_elegida == 1)
+			gondola.ver_contenido();
+		if(opcion_elegida == 2)
+			gondola.ver_ofertas();
+		if(opcion_elegida == 3)
+		{
+			//VARIABLES AUXILIARES
+			Producto new_producto;
+			string new_name;
+			string new_cb;
+			double new_prc;
+			bool new_ofr;
+			
+			cout<<"Codigo de Barras: ";
+			cin>>new_name;
+			cout<<"Nombre: ";
+			cin>>new_name;
+			cout<<"Precio: ";
+			cin>>new_prc;
+			cout<<"En Oferta?  "<<"SI[1] - NO[0]"<<endl;
+			cin>>new_ofr;
+			new_producto.asignar_codigo_barra(new_cb);
+			new_producto.asignar_nombre(new_name);
+			new_producto.asignar_precio(new_prc);
+			new_producto.asignar_oferta(new_ofr);
+			
+			gondola.agregar_producto(new_producto);
+		}
+		else if(opcion_elegida == 4)
+		{
+			string nombre_archivo;
+			cout<<"Nombre del Archivo: "<<endl;
+			cin>>nombre_archivo;
+			gondola.cargar_productos(nombre_archivo);
+		}
+		else if(opcion_elegida == 5)
+		{
+			string nombre_producto;
+			cout<<"Nombre del Producto: "<<endl;
+			cin>>nombre_producto;
+			gondola.buscar_producto_nombre(nombre_producto);
+		}
+		else if(opcion_elegida == 6)
+		{
+			string codigo_producto;
+			cout<<"Codigo del Producto: "<<endl;
+			cin>>codigo_producto;
+			gondola.buscar_producto_codigo(codigo_producto);
+		}
+		if(opcion_elegida != 0)
+		{
+			cout<<"Continuar[1] - Salir[0]"<<endl;
+			cin>>en_uso;
+		}
+		opcion_elegida = mostrar_menu_principal();
 	}
-	if(opcion_elegida == 4)
-	{
-		string nombre_archivo;
-		cout<<"Ingrese el nombre del archivo"<<endl;
-		cin>>nombre_archivo;
-		gondola.cargar_productos(nombre_archivo);
-	}
-	
-	gondola.ver_contenido();
-	
 	return 0;
 }
 
@@ -49,7 +76,6 @@ int mostrar_menu_principal()
 {
 	int usuario = 0;
 	int opcion = 0;
-	//bool en_uso = true;
 	
 	cout<<"Ingresar tipo de usuario: "<<endl;
 	cout<<"1- Repositor"<<endl;
