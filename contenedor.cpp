@@ -38,19 +38,17 @@ int Contenedor::esta_producto(string nombre_producto)
 }
 void Contenedor::buscar_producto_nombre(string nombre_producto)
 {
-	int i = 0;
-	bool encontrado = false;
-	while ((i < tamanio) && (!encontrado))
+	int prod_buscado = esta_producto(nombre_producto);
+	if (prod_buscado != -1)
 	{
-		if (contenido[i].obtener_nombre() == nombre_producto)
-		{
-			encontrado = true;
-			mostrar_producto(contenido[i]);
-		}
-		else
-			i++;
+		mostrar_producto(contenido[prod_buscado]);
+	}
+	else
+	{
+		cout << "No existe el producto: " << nombre_producto << endl;
 	}
 }
+
 void Contenedor::redimensionar(int nuevo_tamanio)
 {
 	Producto *aux = new Producto[nuevo_tamanio];
