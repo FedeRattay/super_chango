@@ -7,6 +7,7 @@ class Contenedor
 {
 	protected:
 		int tamanio;
+		int espacio_ocupado;
 		Producto *contenido;
 		void mostrar_producto(Producto un_producto);
 		void redimensionar(int nuevo_tamanio);
