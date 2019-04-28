@@ -8,6 +8,8 @@ Contenedor::Contenedor()
 	contenido = new Producto[tamanio];
 }
 
+int Contenedor::obtener_cantidad_productos() { return espacio_ocupado; }
+
 void Contenedor::mostrar_producto(Producto un_producto)
 {
 	cout << un_producto.obtener_codigo_barra() << "|" << un_producto.obtener_nombre() << "|$";
@@ -71,17 +73,17 @@ void Contenedor::agregar_producto(Producto un_producto)
 	string codigo_new = un_producto.obtener_codigo_barra();
 	double precio_new = un_producto.obtener_precio();
 	bool oferta_new = un_producto.obtener_oferta();
-	if(tamanio == 0) //El vector estaba vacio
+	if (tamanio == 0) //El vector estaba vacio
 	{
 		tam_new = 5;
 		redimensionar(tam_new);
 	}
-	else if(tamanio != 0)
+	else if (tamanio != 0)
 	{
 		primera_pos_disponible = espacio_ocupado;
-		if(espacio_ocupado == tamanio) //El vector estaba lleno
+		if (espacio_ocupado == tamanio) //El vector estaba lleno
 		{
-			tam_new = espacio_ocupado+5;
+			tam_new = espacio_ocupado + 5;
 			redimensionar(tam_new);
 		}
 	}
@@ -90,7 +92,7 @@ void Contenedor::agregar_producto(Producto un_producto)
 	contenido[primera_pos_disponible].asignar_precio(precio_new);
 	contenido[primera_pos_disponible].asignar_oferta(oferta_new);
 	espacio_ocupado++;
-	cout<<" ESPACIO OCUPADO: "<<espacio_ocupado<<endl;
+	cout << " ESPACIO OCUPADO: " << espacio_ocupado << endl;
 }
 
 void Contenedor::quitar_producto(string nombre_producto)
@@ -103,7 +105,7 @@ void Contenedor::quitar_producto(string nombre_producto)
 		if (contenido[pos_eliminar].obtener_nombre() == nombre_producto)
 		{
 			encontrado = true;
-			contenido[pos_eliminar] = contenido[tamanio-1];
+			contenido[pos_eliminar] = contenido[tamanio - 1];
 			espacio_ocupado--;
 		}
 		else
