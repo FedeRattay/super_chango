@@ -49,7 +49,6 @@ void Contenedor::buscar_producto_nombre(string nombre_producto)
 		cout << "No existe el producto: " << nombre_producto << endl;
 	}
 }
-
 void Contenedor::redimensionar(int nuevo_tamanio)
 {
 	Producto *aux = new Producto[nuevo_tamanio];
