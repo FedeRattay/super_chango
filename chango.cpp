@@ -2,23 +2,22 @@
 using namespace std;
 #include "chango.h"
 
-double Chango::calcular_total()
+void Chango::calcular_total()
 {
 	double gasto_total = 0;
 	double descuento = 0;
-	for(int i = 0; i < tamanio; i++)
+	for (int i = 0; i < tamanio; i++)
 	{
-		if(contenido[i].oferta)
+		if (contenido[i].obtener_oferta())
 		{
-			descuento = (0.1*contenido[i].precio);
-			gasto_total += (contenido[i].precio-descuento);
+			descuento = (0.1 * contenido[i].obtener_precio());
+			gasto_total += (contenido[i].obtener_precio() - descuento);
 		}
 		else
-			gasto_total += contenido[i].precio;
+			gasto_total += contenido[i].obtener_precio();
 	}
-}
-void Chango::cargar_producto(Producto producto_elegido)
-{
-	//contenido[posicion] = producto_elegido;
-	//posicion++;
+	cout << "\n-------------------------------------------";
+	cout << "\nEl Monto final es: $" << gasto_total << endl;
+	cout << "Te ahorraste: $" << descuento << endl;
+	cout << "-------------------------------------------"<<endl;
 }

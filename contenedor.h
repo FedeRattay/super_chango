@@ -16,7 +16,7 @@ class Contenedor
 
 		void ver_contenido();
 		void buscar_producto_nombre(string nombre_producto);
-		void agregar_producto(Producto un_producto);
+		virtual void agregar_producto(Producto un_producto);
 		void quitar_producto(string nombre_producto);
 		~Contenedor();
 };
