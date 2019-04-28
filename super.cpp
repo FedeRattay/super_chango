@@ -10,7 +10,12 @@ int main()
 {
 	bool en_uso = true;
 	int opcion_elegida = 0;
+	int sub_opcion_elegida = 0;
+	//int encontrado = 0;
 	Gondola gondola;
+	string nombre_buscado;
+	double new_prc;
+	
 	while(en_uso == true)
 	{
 		if(opcion_elegida == 1)
@@ -23,9 +28,8 @@ int main()
 			Producto new_producto;
 			string new_name;
 			string new_cb;
-			double new_prc;
 			bool new_ofr;
-			
+			//
 			cout<<"Codigo de Barras: ";
 			cin>>new_name;
 			cout<<"Nombre: ";
@@ -50,18 +54,42 @@ int main()
 		}
 		else if(opcion_elegida == 5)
 		{
-			string nombre_producto;
 			cout<<"Nombre del Producto: "<<endl;
-			cin>>nombre_producto;
-			gondola.buscar_producto_nombre(nombre_producto);
+			cin>>nombre_buscado;
+			/*if(gondola.buscar_producto_nombre(nombre_buscado) != -1)
+			{
+				cout<<"1- Modificar El Precio"<<endl;
+				cout<<"2- Quitar Producto"<<endl;
+				cin>>sub_opcion_elegida;
+			}
+			else 
+				cout<<"El Producto No existe"<<endl;*///HAY QUE ARREGLAR LOS BUSCAR PRIMERO
 		}
 		else if(opcion_elegida == 6)
 		{
-			string codigo_producto;
+			string codigo_buscado;
 			cout<<"Codigo del Producto: "<<endl;
-			cin>>codigo_producto;
-			gondola.buscar_producto_codigo(codigo_producto);
+			cin>>codigo_buscado;
+			gondola.buscar_producto_codigo(codigo_buscado);
+			cout<<"1- Modificar El Precio"<<endl;
+			cout<<"2- Quitar Producto"<<endl;
+			cin>>sub_opcion_elegida;
 		}
+		
+		if(sub_opcion_elegida == 1)
+		{
+			cout<<"Precio Nuevo: ";
+			cin>>new_prc;
+			gondola.modificar_precio(nombre_buscado,new_prc);
+		}
+		else if(sub_opcion_elegida == 2)
+		{
+			gondola.quitar_producto(nombre_buscado);
+		}
+		nombre_buscado = "";
+		sub_opcion_elegida = 0;
+		
+		
 		if(opcion_elegida != 0)
 		{
 			cout<<"Continuar[1] - Salir[0]"<<endl;
@@ -94,11 +122,6 @@ int mostrar_menu_principal()
 		
 		cin>>opcion;
 		return opcion;
-		
-		/*
-		cout<<"1- Modificar El Precio"<<endl;
-		cout<<"2- Quitar Producto"<<endl;
-		*/
 	}
 	else if(usuario == 2)
 	{
