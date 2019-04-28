@@ -60,17 +60,9 @@ void Gondola::buscar_producto_codigo(string codigo_producto)
 			i++;
 	}
 }
-void Gondola::modificar_precio(string nombre_producto, double precio_nuevo)
+void Gondola::modificar_precio(int posicion_buscada, double precio_nuevo)
 {
-	int prod_modificar = esta_producto(nombre_producto);
-	if (prod_modificar != -1)
-	{
-		contenido[prod_modificar].asignar_precio(precio_nuevo);
-	}
-	else
-	{
-		cout << "No existe el producto: " << nombre_producto << endl;
-	}
+	contenido[posicion_buscada].asignar_precio(precio_nuevo);
 }
 void Gondola::ver_ofertas()
 {

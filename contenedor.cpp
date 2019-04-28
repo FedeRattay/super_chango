@@ -22,32 +22,25 @@ void Contenedor::ver_contenido()
 		mostrar_producto(contenido[i]);
 	}
 }
-int Contenedor::esta_producto(string nombre_producto)
+int Contenedor::buscar_producto_nombre(string nombre_producto)
 {
 	int posicion_buscada = NO_ENCONTRADO;
-	int pos_producto = 0;
-	while ((pos_producto < tamanio) && (posicion_buscada == NO_ENCONTRADO))
+	int posicion = 0;
+	while ((posicion < tamanio) && (posicion_buscada == NO_ENCONTRADO))
 	{
-		if (contenido[pos_producto].obtener_nombre() == nombre_producto)
+		if (contenido[posicion].obtener_nombre() == nombre_producto)
 		{
-			posicion_buscada = pos_producto;
+			posicion_buscada = posicion;
+			mostrar_producto(contenido[posicion_buscada]);
 		}
 		else
-			pos_producto++;
+			posicion++;
 	}
-	return posicion_buscada;
-}
-void Contenedor::buscar_producto_nombre(string nombre_producto)
-{
-	int prod_buscado = esta_producto(nombre_producto);
-	if (prod_buscado != NO_ENCONTRADO)
-	{
-		mostrar_producto(contenido[prod_buscado]);
-	}
-	else
+	if (posicion_buscada == NO_ENCONTRADO)
 	{
 		cout << "No existe el producto: " << nombre_producto << endl;
 	}
+	return posicion_buscada;
 }
 void Contenedor::redimensionar(int nuevo_tamanio)
 {
@@ -101,19 +94,10 @@ void Contenedor::agregar_producto(Producto un_producto)
 	contenido[primera_pos_disponible].asignar_oferta(oferta_new);
 	espacio_ocupado++;
 }
-void Contenedor::quitar_producto(string nombre_producto)
+void Contenedor::quitar_producto(int posicion_buscada)
 {
-
-	int prod_eliminar = esta_producto(nombre_producto);
-	if (prod_eliminar != NO_ENCONTRADO)
-	{
-		contenido[prod_eliminar] = contenido[espacio_ocupado - 1];
-		espacio_ocupado--;
-	}
-	else
-	{
-		cout << "No existe el producto: " << nombre_producto << endl;
-	}
+	contenido[posicion_buscada] = contenido[espacio_ocupado - 1];
+	espacio_ocupado--;
 }
 Contenedor::~Contenedor()
 {
