@@ -78,7 +78,9 @@ void realizar_accion(int usuario, int opcion_elegida, bool &en_uso, Gondola &gon
 				new_producto.asignar_nombre(new_name);
 				new_producto.asignar_precio(new_prc);
 				new_producto.asignar_oferta(new_ofr);
+				
 				existe = gondola.buscar_producto_codigo(new_cb);
+				cout<<"EXISTE = "<<existe<<endl;
 				if(existe == -1)
 				{
 					gondola.agregar_producto(new_producto);
