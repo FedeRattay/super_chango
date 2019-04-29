@@ -10,9 +10,9 @@ Contenedor::Contenedor()
 int Contenedor::obtener_cantidad_productos() { return espacio_ocupado; }
 void Contenedor::mostrar_producto(Producto un_producto)
 {
-	cout << un_producto.obtener_codigo_barra() << "|" << un_producto.obtener_nombre() << "|$";
-	cout << un_producto.obtener_precio() << "-> ";
-	cout << (un_producto.obtener_oferta() ? "Oferta 10% OFF\n" : "No esta en oferta\n");
+	cout<< un_producto.obtener_codigo_barra()<< "|"<<un_producto.obtener_nombre()<<"|$";
+	cout<< un_producto.obtener_precio()<<"-> ";
+	cout<< (un_producto.obtener_oferta() ? "Oferta 10% OFF\n" : "No esta en oferta\n");
 }
 void Contenedor::ver_contenido()
 {
