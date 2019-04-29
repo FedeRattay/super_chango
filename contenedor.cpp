@@ -95,7 +95,10 @@ void Contenedor::agregar_producto(Producto un_producto)
 }
 void Contenedor::quitar_producto(int posicion_buscada)
 {
-	contenido[posicion_buscada] = contenido[espacio_ocupado - 1];
+	if(espacio_ocupado > 1)
+	{
+		contenido[posicion_buscada] = contenido[espacio_ocupado - 1];
+	}
 	espacio_ocupado--;
 }
 Contenedor::~Contenedor()

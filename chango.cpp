@@ -6,7 +6,7 @@ void Chango::calcular_total()
 {
 	double gasto_total = 0;
 	double descuento = 0;
-	for (int i = 0; i < tamanio; i++)
+	for (int i = 0; i < espacio_ocupado; i++)
 	{
 		if (contenido[i].obtener_oferta())
 		{

@@ -151,7 +151,7 @@ void realizar_accion(int usuario, int opcion_elegida, bool &en_uso, Gondola &gon
 			cout<<"Nombre del Producto: "<<endl;
 			cin>>nombre;
 			int posicion_buscada;
-			posicion_buscada = gondola.buscar_producto_nombre(nombre);
+			posicion_buscada = chango.buscar_producto_nombre(nombre);
 			if(posicion_buscada != NO_ENCONTRADO)
 				chango.quitar_producto(posicion_buscada);
 		}
