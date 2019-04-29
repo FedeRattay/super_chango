@@ -82,8 +82,3 @@ Producto Gondola::obtener_producto(int posicion_buscada)
 {
 	return contenido[posicion_buscada];
 }
-/*Gondola::~Gondola()
-{
-	//delete[] ...;
-}
-*/
