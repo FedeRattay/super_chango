@@ -67,7 +67,7 @@ void realizar_accion(int usuario, int opcion_elegida, bool &en_uso, Gondola &gon
 			while(existe == 0)
 			{
 				cout<<"Codigo de Barras: ";
-				cin>>new_name;
+				cin>>new_cb;
 				cout<<"Nombre: ";
 				cin>>new_name;
 				cout<<"Precio: ";
@@ -78,15 +78,17 @@ void realizar_accion(int usuario, int opcion_elegida, bool &en_uso, Gondola &gon
 				new_producto.asignar_nombre(new_name);
 				new_producto.asignar_precio(new_prc);
 				new_producto.asignar_oferta(new_ofr);
-				
 				existe = gondola.buscar_producto_codigo(new_cb);
-				cout<<"EXISTE = "<<existe<<endl;
 				if(existe == -1)
 				{
+					cout<<"Agregando nuevo producto."<<endl;
 					gondola.agregar_producto(new_producto);
 				}
 				else
+				{
 					cout<<"ERROR El Producto Ya Existe o el Codigo Esta repetido."<<endl;
+					cout<<"Intente de nuevo."<<endl;
+				}
 			}
 		}
 		else if(opcion_elegida == 4)
