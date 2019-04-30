@@ -63,21 +63,32 @@ void realizar_accion(int usuario, int opcion_elegida, bool &en_uso, Gondola &gon
 			string new_name;
 			string new_cb;
 			bool new_ofr;
-
-			cout<<"Codigo de Barras: ";
-			cin>>new_name;
-			cout<<"Nombre: ";
-			cin>>new_name;
-			cout<<"Precio: ";
-			cin>>new_prc;
-			cout<<"En Oferta?  "<<"SI[1] - NO[0]"<<endl;
-			cin>>new_ofr;
-			new_producto.asignar_codigo_barra(new_cb);
-			new_producto.asignar_nombre(new_name);
-			new_producto.asignar_precio(new_prc);
-			new_producto.asignar_oferta(new_ofr);
-			
-			gondola.agregar_producto(new_producto);
+			int existe = 0;
+			while(existe == 0)
+			{
+				cout<<"Codigo de Barras: ";
+				cin>>new_cb;
+				existe = gondola.buscar_producto_codigo(new_cb);
+				if(existe == -1)
+				{
+					cout<<"Nombre: ";
+					cin>>new_name;
+					cout<<"Precio: ";
+					cin>>new_prc;
+					cout<<"En Oferta?  "<<"SI[1] - NO[0]"<<endl;
+					cin>>new_ofr;
+					new_producto.asignar_codigo_barra(new_cb);
+					new_producto.asignar_nombre(new_name);
+					new_producto.asignar_precio(new_prc);
+					new_producto.asignar_oferta(new_ofr);
+					gondola.agregar_producto(new_producto);
+				}
+				else
+				{
+					cout<<"ERROR El Codigo Esta repetido."<<endl;
+					cout<<"Intente de nuevo."<<endl;
+				}
+			}
 		}
 		else if(opcion_elegida == 4)
 		{
@@ -103,7 +114,7 @@ void realizar_accion(int usuario, int opcion_elegida, bool &en_uso, Gondola &gon
 			string codigo_buscado;
 			cout<<"Codigo del Producto: "<<endl;
 			cin>>codigo_buscado;
-			gondola.buscar_producto_codigo(codigo_buscado);
+			posicion_buscada = gondola.buscar_producto_codigo(codigo_buscado);
 			if(posicion_buscada != NO_ENCONTRADO)
 			{
 				cout<<"1- Modificar El Precio"<<endl;

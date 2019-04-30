@@ -23,7 +23,7 @@ void Gondola::cargar_productos(string nombre_archivo)
 		double precio = 0;
 		bool oferta;
 
-		getline(archivo_stock, cantidad_productos, ',');
+		getline(archivo_stock, cantidad_productos, '\n');
 		int cantidad = stoi(cantidad_productos);
 
 		redimensionar(cantidad);
@@ -31,7 +31,7 @@ void Gondola::cargar_productos(string nombre_archivo)
 			getline(archivo_stock, codigo, ',') &&
 			getline(archivo_stock, nombre, ',') &&
 			getline(archivo_stock, precio_aux, ',') &&
-			getline(archivo_stock, oferta_aux, ','))
+			getline(archivo_stock, oferta_aux, '\n'))
 		{
 			precio = stod(precio_aux);
 			oferta = (oferta_aux == "1");
@@ -48,9 +48,9 @@ int Gondola::buscar_producto_codigo(string codigo_producto)
 {
 	int posicion_buscada = NO_ENCONTRADO;
 	int posicion = 0;
-	while ((posicion < tamanio) && (posicion_buscada == NO_ENCONTRADO))
+	while ((posicion < espacio_ocupado) && (posicion_buscada == NO_ENCONTRADO))
 	{
-		if (contenido[posicion].obtener_codigo_barra() == codigo_producto)
+		if(contenido[posicion].obtener_codigo_barra() == codigo_producto)
 		{
 			posicion_buscada = posicion;
 			mostrar_producto(contenido[posicion_buscada]);
@@ -60,7 +60,7 @@ int Gondola::buscar_producto_codigo(string codigo_producto)
 	}
 	if (posicion_buscada == NO_ENCONTRADO)
 	{
-		cout << "No existe el producto: " << codigo_producto << endl;
+		cout << "No existe el codigo: " << codigo_producto << endl;
 	}
 	return posicion_buscada;
 }
@@ -70,7 +70,7 @@ void Gondola::modificar_precio(int posicion_buscada, double precio_nuevo)
 }
 void Gondola::ver_ofertas()
 {
-	for (int i = 0; i < tamanio; i++)
+	for (int i = 0; i < espacio_ocupado; i++)
 	{
 		if (contenido[i].obtener_oferta())
 		{
