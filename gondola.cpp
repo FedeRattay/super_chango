@@ -60,7 +60,7 @@ int Gondola::buscar_producto_codigo(string codigo_producto)
 	}
 	if (posicion_buscada == NO_ENCONTRADO)
 	{
-		cout << "No existe el producto: " << codigo_producto << endl;
+		cout << "No existe el codigo: " << codigo_producto << endl;
 	}
 	return posicion_buscada;
 }
